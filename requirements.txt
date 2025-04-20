@@ -1,0 +1,12 @@
+accelerate>=1.6.0
+diffusers>=0.27.0
+transformers>=4.51.3
+peft>=0.15.2
+bitsandbytes>=0.45.5
+pillow
+flask
+numpy
+tqdm
+safetensors>=0.5.3
+tensorboard
+gradio
