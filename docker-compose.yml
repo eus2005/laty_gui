@@ -1,0 +1,21 @@
+services:
+  laty-gui:
+    build: .
+    image: laty-gui:latest 
+    container_name: laty_gui_container
+    ports:
+      - "7866:7866" 
+    volumes:
+      - ./models:/app/models:rw
+      - ./datasets:/app/datasets:ro
+      - ./dpo_lora_finetune_settings.json:/app/dpo_lora_finetune_settings.json:rw
+      - ./Lora/finetuned_lora:/app/Lora/finetuned_lora:rw
+      - ~/.cache/huggingface:/app/hub_cache
+    working_dir: /app 
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
