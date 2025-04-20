@@ -1,7 +1,7 @@
 services:
-  laty-gui:
+  laty_gui:
     build: .
-    image: laty-gui:latest 
+    image: laty_gui:latest 
     container_name: laty_gui_container
     ports:
       - "7866:7866" 
