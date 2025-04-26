@@ -1,17 +1,19 @@
 services:
-  laty_gui:
+  laty_gui_runpod:
     build: .
-    image: laty_gui:latest 
-    container_name: laty_gui_container
+    image: laty_gui_runpod:latest
+    container_name: laty_gui_runpod_container
     ports:
-      - "7866:7866" 
+      - "7866:7866"
+      - "8888:8888"
     volumes:
-      - ./models:/app/models:rw
-      - ./datasets:/app/datasets:ro
-      - ./dpo_lora_finetune_settings.json:/app/dpo_lora_finetune_settings.json:rw
-      - ./Lora/finetuned_lora:/app/Lora/finetuned_lora:rw
-      - ~/.cache/huggingface:/app/hub_cache
-    working_dir: /app 
+      - .:/workspace/laty_gui:rw
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    working_dir: /workspace/laty_gui
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
     deploy:
       resources:
         reservations:
